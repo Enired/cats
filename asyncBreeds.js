@@ -1,13 +1,21 @@
 const fs = require('fs');
-const breedDetailsFromFile = function(breed) {
-  let someotherdata = fs.readFile(`./data/${breed}.txt`, 'utf8', (error, data) => {
+const breedDetailsFromFile = function(breed, cb) {
+  fs.readFile(`./data/${breed}.txt`, 'utf8', (error, data) => {
     if (!error) {
-      console.log('breedDetailsFromFile: Calling readFile...');
-      console.log(`${breed} Cat Data`);
-      console.log(`Description: ${data} \n`);
+      cb(breed,data);
+      // console.log('breedDetailsFromFile: Calling readFile...');
+      // console.log(`${breed} Cat Data`);
+      // console.log(`Description: ${data} \n`);
     }
   });
 };
+const printCatBreedDesc = (breed) => {console.log(`The cat is a ${breed}.`)}
+const printCatDataDesc = (data) => {console.log(`Cat Description: ${data} \n`)}
 
-breedDetailsFromFile('Bombay');
-breedDetailsFromFile('Balinese')
+const printAllDataOnCat = (breed,data) => {
+  printCatBreedDesc(breed);
+  printCatDataDesc(data)
+}
+
+breedDetailsFromFile('Bombay', printAllDataOnCat);
+breedDetailsFromFile('Balinese', printAllDataOnCat)
