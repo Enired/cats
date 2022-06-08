@@ -1,5 +1,4 @@
 const fs = require('fs');
-
 const breedDetailsFromFile = function(breed) {
   let someotherdata = fs.readFile(`./data/${breed}.txt`, 'utf8', (error, data) => {
     if (!error) {
@@ -9,5 +8,6 @@ const breedDetailsFromFile = function(breed) {
     }
   });
 };
+
 breedDetailsFromFile('Bombay');
 breedDetailsFromFile('Balinese')
